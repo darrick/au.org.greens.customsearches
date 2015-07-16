@@ -27,7 +27,8 @@ class CRM_Customsearches_Form_Search_addressFixNeeded extends CRM_Contact_Form_S
    *
    * @param CRM_Core_Form $form modifiable
    */
-  function buildForm(&$form) {        $this->setTitle('AG - Find Users with Addresses Needing Fixing');
+  function buildForm(&$form) {
+    $this->setTitle('AG - Find Users with Addresses Needing Fixing');
     /**
      * Define the search form fields here
      */
