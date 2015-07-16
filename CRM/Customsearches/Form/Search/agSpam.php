@@ -52,7 +52,9 @@ class CRM_Customsearches_Form_Search_agSpam extends CRM_Contact_Form_Search_Cust
     $form->addRadio('spam_options',
       ts('Search options'),
       $spam_options,
-      TRUE, '<br />', TRUE
+      array(),
+      '<br />',
+      TRUE
     );
 
     // Text box for phone number length to test
@@ -137,7 +139,7 @@ class CRM_Customsearches_Form_Search_agSpam extends CRM_Contact_Form_Search_Cust
 
     $sql = "
       SELECT $select
-      FROM $from\n";
+      $from\n";
 
     if (!empty($where)) {
       $sql .= "WHERE $where";
@@ -154,7 +156,7 @@ class CRM_Customsearches_Form_Search_agSpam extends CRM_Contact_Form_Search_Cust
 
     $this->buildACLClause('contact_a');
 
-    $sql = "civicrm_contact AS contact_a
+    $sql = " FROM civicrm_contact AS contact_a
       LEFT JOIN civicrm_email email
         ON contact_a.id = email.contact_id and email.is_primary=1
       LEFT JOIN civicrm_address address
@@ -249,7 +251,7 @@ END_SQL;
       $clauses [] = "(contact_a.id > $min_contact_id)";
     }
 
-    $blank_names = $this->_formValues['blank_names'];
+    $blank_names = CRM_Utils_Array::value('blank_names', $this->_formValues);
     if ($blank_names) {
       $clauses [] = "(contact_a.first_name AND contact_a.last_name)";
     }
@@ -284,10 +286,6 @@ END_SQL;
       CRM_Core_DAO::$_nullArray
     );
     return $dao->N;
-  }
-
-  function contactIDs($offset = 0, $rowcount = 0, $sort = NULL) {
-    return $this->all($offset, $rowcount, $sort, FALSE, TRUE);
   }
 
   function &columns() {

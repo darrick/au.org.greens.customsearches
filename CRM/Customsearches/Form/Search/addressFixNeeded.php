@@ -47,7 +47,9 @@ class CRM_Customsearches_Form_Search_addressFixNeeded extends CRM_Contact_Form_S
     $form->addRadio('search_type',
       ts('Search options'),
       $search_types,
-      TRUE, '<br />', TRUE
+      array(),
+      '<br />',
+      TRUE
     );
 
     // Filter on Minimum Contact ID
@@ -78,22 +80,6 @@ class CRM_Customsearches_Form_Search_addressFixNeeded extends CRM_Contact_Form_S
     //   'summary' => 'This is a summary',
     //   'total' => 50.0,
     // );
-  }
-
-  /**
-   * Get a list of displayable columns
-   *
-   * @return array, keys are printable column headers and values are SQL column names
-   */
-  function &columns() {
-    // return by reference
-    $columns = array(
-      ts('Contact Id') => 'contact_id',
-      ts('Contact Type') => 'contact_type',
-      ts('Name') => 'sort_name',
-      ts('State') => 'state_province',
-    );
-    return $columns;
   }
 
   /**
@@ -132,7 +118,7 @@ class CRM_Customsearches_Form_Search_addressFixNeeded extends CRM_Contact_Form_S
 
     $sql = "
           SELECT $select
-          FROM $from\n";
+          $from\n";
 
     if (!empty($where)) {
       $sql .= "WHERE $where";
@@ -143,6 +129,15 @@ class CRM_Customsearches_Form_Search_addressFixNeeded extends CRM_Contact_Form_S
     }
 
     return $sql;
+  }
+
+  function count() {
+    $sql = $this->all();
+
+    $dao = CRM_Core_DAO::executeQuery($sql,
+      CRM_Core_DAO::$_nullArray
+    );
+    return $dao->N;
   }
 
   /**
@@ -165,7 +160,7 @@ class CRM_Customsearches_Form_Search_addressFixNeeded extends CRM_Contact_Form_S
    * @return string, sql fragment with FROM and JOIN clauses
    */
   function from() {
-    $sql = "civicrm_contact AS contact
+    $sql = " FROM civicrm_contact AS contact
           JOIN civicrm_address AS address1
             ON address1.contact_id = contact.id
             AND address1.location_type_id=5
