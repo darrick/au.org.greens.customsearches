@@ -270,13 +270,4 @@ class CRM_Customsearches_Form_Search_addressFixNeeded extends CRM_Contact_Form_S
     return 'CRM/Contact/Form/Search/Custom.tpl';
   }
 
-  /**
-   * Modify the content of each row
-   *
-   * @param array $row modifiable SQL result row
-   * @return void
-   */
-  function alterRow(&$row) {
-    $row['sort_name'] .= ' ( altered )';
-  }
 }
