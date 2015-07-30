@@ -4,15 +4,15 @@
 // database as appropriate. For more details, see "hook_civicrm_managed" at:
 // http://wiki.civicrm.org/confluence/display/CRMDOC42/Hook+Reference
 return array (
-  0 => 
+  0 =>
   array (
     'name' => 'CRM_Customsearches_Form_Search_addressFixNeeded',
     'entity' => 'CustomSearch',
-    'params' => 
+    'params' =>
     array (
       'version' => 3,
       'label' => 'addressFixNeeded',
-      'description' => 'addressFixNeeded (au.org.greens.customsearches)',
+      'description' => 'Addresses needing attention',
       'class_name' => 'CRM_Customsearches_Form_Search_addressFixNeeded',
     ),
   ),

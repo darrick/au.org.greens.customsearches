@@ -31,7 +31,7 @@ class CRM_Customsearches_Form_Search_agSpam extends CRM_Contact_Form_Search_Cust
    * @return void
    */
   function buildForm(&$form) {
-    $this->setTitle('AG - Find Potential Spam Records');
+    $this->setTitle('Potential spam entries and names for fixing');
 
     /**
      * Define the search form fields here

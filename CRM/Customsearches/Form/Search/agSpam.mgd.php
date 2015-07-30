@@ -4,15 +4,15 @@
 // database as appropriate. For more details, see "hook_civicrm_managed" at:
 // http://wiki.civicrm.org/confluence/display/CRMDOC42/Hook+Reference
 return array (
-  0 => 
+  0 =>
   array (
     'name' => 'CRM_Customsearches_Form_Search_agSpam',
     'entity' => 'CustomSearch',
-    'params' => 
+    'params' =>
     array (
       'version' => 3,
       'label' => 'agSpam',
-      'description' => 'agSpam (au.org.greens.customsearches)',
+      'description' => 'Potential spam entries and names for fixing',
       'class_name' => 'CRM_Customsearches_Form_Search_agSpam',
     ),
   ),
