@@ -181,9 +181,9 @@ class CRM_Customsearches_Form_Search_agSpam extends CRM_Contact_Form_Search_Cust
       $clauses[] = "{$this->_aclWhere}";
     }
 
-    $min_length = $this->_formValues['min_length'] + 0;
+    $min_length = $this->_formValues['min_length'];
     $min_length < 10000 ? $min_length : 0;
-    $max_length = $this->_formValues['max_length'] + 0;
+    $max_length = $this->_formValues['max_length'];
     $max_length > 0 ? $max_length : 10000;
     $unexpected_name_chars = <<<END_SQL
   concat(
